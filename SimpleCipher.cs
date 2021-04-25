@@ -1,28 +1,43 @@
 using System;
+using System.Collections.Generic;
+using System.Text;
 
 public class SimpleCipher
 {
     public SimpleCipher()
     {
-        throw new NotImplementedException("You need to implement this function.");
+       Key = RandomString();
     }
 
     public SimpleCipher(string key)
     {
-        throw new NotImplementedException("You need to implement this function.");
+        Key = key;
     }
     
     public string Key 
     {
         get
         {
-            throw new NotImplementedException("You need to implement this function.");
+            return Key;
         }
+    }
+
+    private string RandomString()
+    {
+        string alphabet = "abcdefghijklmnopqrstuvwxyz";
+        var randomString = new StringBuilder();
+        var random = new Random();
+        for (int i = 0; i < 100; i++)
+        {
+            char randomChar = alphabet[random.Next(25)];
+            randomString.Append(randomChar);
+        }
+        return randomString.ToString();
     }
 
     public string Encode(string plaintext)
     {
-        throw new NotImplementedException("You need to implement this function.");
+       
     }
 
     public string Decode(string ciphertext)
