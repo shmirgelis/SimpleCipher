@@ -49,7 +49,7 @@ public class SimpleCipher
         for (int i = 0; i < plaintext.Length; i++)
         {
             int element = alphabetElements[plaintext[i]] + alphabetElements[cipherKey[i]];
-            while (element > 25)
+            if (element > 25)
             {
                 element -= 26;
             }
@@ -60,6 +60,22 @@ public class SimpleCipher
 
     public string Decode(string ciphertext)
     {
-        throw new NotImplementedException("You need to implement this function.");
+        string cipherKey = Key;
+        while (ciphertext.Length > cipherKey.Length)
+        {
+            cipherKey += cipherKey;
+        }
+       
+        var decodeString = new StringBuilder();
+        for (int i = 0; i < ciphertext.Length; i++)
+        {
+            int element = alphabetElements[ciphertext[i]] - alphabetElements[cipherKey[i]];
+            if (element < 0)
+            {
+                element += 26;
+            }
+            decodeString.Append(alphabet[element]);
+        }
+        return decodeString.ToString();
     }
 }
